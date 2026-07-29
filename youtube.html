@@ -361,6 +361,13 @@
 </div>
 
 <script>
+  // ================= Register Service Worker for true offline support =================
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW registration failed', err));
+    });
+  }
+
   // ================= IndexedDB storage =================
   const DB_NAME = 'my-music-db';
   const STORE_NAME = 'tracks';
